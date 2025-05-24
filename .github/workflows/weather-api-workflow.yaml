@@ -27,8 +27,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t LOCATION-docker.pkg.dev/${{ secrets.PROJECT_ID }}/weather-api .
+        docker build -t us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/weather-api/weather-api .
 
     - name: Push to GCR
       run: |
-        docker push LOCATION-docker.pkg.dev/${{ secrets.PROJECT_ID }}/weather-api
+        docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/weather-api/weather-api
