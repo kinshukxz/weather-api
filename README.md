@@ -31,7 +31,87 @@
 - GitHub Actions
 - OpenWeatherMap API
 
+
 ---
 
 ## 📂 Folder Structure
+
+````
+weather-api/
+├── server.js
+├── .env # not committed (contains your API key)
+├── package.json
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
+└── .github/workflows/docker-gcr.yml
+````
+---
+
+## 🧪 API Usage
+
+**GET `/weather/:city`**
+
+Example:
+
+GET http://localhost:5050/weather/delhi
+
+
+Response:
+
+```json
+{
+  "city": "Delhi",
+  "temperature": "30°C",
+  "description": "haze",
+  "humidity": "60%"
+}
+````
+
+## 🧑‍💻 Run Locally
+
+- 1. Clone the Repo
+git clone https://github.com/kinshukxz/weather-api.git
+cd weather-api
+npm install
+
+- 2. Add .env File
+env
+````
+WEATHER_API_KEY=your_openweathermap_api_key
+PORT=5050
+````
+Get your key from https://openweathermap.org/api
+
+- 3. Run the App
+
+node server.js
+- Test:
+http://localhost:5000/weather/london
+
+## 🐳 Run in Docker
+- 1. Build the Image
+docker build -t weather-api .
+- 2. Run the Container
+
+docker run -p 5000:5000 --env WEATHER_API_KEY=your_key weather-api
+
+## ☁️ Push to Google Artifact Registry
+## ✅ Requirements:
+
+- GCP project
+
+Artifact Registry Docker repo (e.g., weather-api)
+
+- Service account with:
+
+- Artifact Registry Writer
+
+- Storage Admin
+
+## 🔐 GitHub Secrets Needed:
+```
+GCP_SA_KEY	Full service account JSON key
+PROJECT_ID	Your GCP project ID
+```
 
